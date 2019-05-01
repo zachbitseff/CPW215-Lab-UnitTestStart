@@ -7,24 +7,25 @@ namespace BusinessLogic
     public class Course
     {
 
+        private byte _numberOfCredits;
+
         public byte NumberOfCredits
         {
             get
-            { return NumberOfCredits; }
+            { return _numberOfCredits; }
 
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("NumberOfCredits", "NumberOfCredits must be a non-negative value");
                 }
-
-                if (value > 30)
+                else if (value > 29)
                 {
-                    throw new ArgumentException("NumberOfCredits", "NumberOfCredits cannot exceed 30");
+                    throw new ArgumentException("NumberOfCredits", "NumberOfCredits must be less than 30");
                 }
 
-                NumberOfCredits = value;
+                _numberOfCredits = value;
             }
         }
 
@@ -51,48 +52,47 @@ namespace BusinessLogic
 
             InstructorName = instructorName;
 
-            //Credits must be non-negative and no more than 30
-
-
             NumberOfCredits = numCredits;
         }
 
+
+        private string _instructorName;
         /// <summary>
         /// The instructor teaching the course
         /// </summary>
-        public string InstructorName
-        {
+        public string InstructorName 
+       {
             get
-            { return InstructorName; }
+            { return _instructorName; }
 
             set
             {
-                if (value.Equals(null))
+                if (value == null)
                 {
                     throw new ArgumentNullException("InstructorName", "InstructorName cannot be null");
                 }
 
-                InstructorName = value;
+                _instructorName = value;
             }
         }
 
-
+        private string _courseName;
         /// <summary>
         /// The name of the course
         /// </summary>
         public string CourseName
         {
             get
-            { return CourseName; }
+            { return _courseName; }
 
             set
             {
-                if (value.Equals(null))
+                if (value == null)
                 {
                     throw new ArgumentNullException("CourseName", "CourseName cannot be null");
                 }
 
-                CourseName = value;
+                _courseName = value;
             }
         }
 
